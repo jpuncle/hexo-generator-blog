@@ -1,7 +1,7 @@
 {
-  "name": "hexo-generator-index",
-  "version": "0.2.0",
-  "description": "Index generator for Hexo.",
+  "name": "hexo-generator-blog",
+  "version": "0.0.1",
+  "description": "Blog generator for Hexo.",
   "main": "index",
   "scripts": {
     "eslint": "eslint .",
@@ -15,15 +15,16 @@
   "engines": {
     "node": ">= 0.10.0"
   },
-  "repository": "hexojs/hexo-generator-index",
+  "repository": "jpuncle/hexo-generator-blog",
   "homepage": "http://hexo.io/",
   "keywords": [
     "hexo",
     "generator",
     "index",
+    "blog",
     "home"
   ],
-  "author": "Tommy Chen <tommy351@gmail.com> (http://zespia.tw)",
+  "author": "jpuncle <jack_zhxk@163.com> (http://github.jpuncle.com)",
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.4.0",

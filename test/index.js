@@ -3,7 +3,7 @@
 var should = require('chai').should(); // eslint-disable-line
 var Hexo = require('hexo');
 
-describe('Index generator', function() {
+describe('Blog generator', function() {
   var hexo = new Hexo(__dirname, {silent: true});
   var Post = hexo.model('Post');
   var generator = require('../lib/generator').bind(hexo);
@@ -11,7 +11,8 @@ describe('Index generator', function() {
   var locals;
 
   // Default config
-  hexo.config.index_generator = {
+  hexo.config.blog_generator = {
+    path: 'blog',
     per_page: 10,
     order_by: '-date'
   };
@@ -28,14 +29,14 @@ describe('Index generator', function() {
   });
 
   it('pagination enabled', function() {
-    hexo.config.index_generator.per_page = 2;
+    hexo.config.blog_generator.per_page = 2;
 
     var result = generator(locals);
 
     result.length.should.eql(2);
 
     for (var i = 0, len = result.length; i < len; i++) {
-      result[i].layout.should.eql(['index', 'archive']);
+      result[i].layout.should.eql(['blog', 'archive']);
       result[i].data.current.should.eql(i + 1);
       result[i].data.base.should.eql('');
       result[i].data.total.should.eql(2);
@@ -60,18 +61,18 @@ describe('Index generator', function() {
     result[1].data.__index.should.be.true;
 
     // Restore config
-    hexo.config.index_generator.per_page = 10;
+    hexo.config.blog_generator.per_page = 10;
   });
 
   it('pagination disabled', function() {
-    hexo.config.index_generator.per_page = 0;
+    hexo.config.blog_generator.per_page = 0;
 
     var result = generator(locals);
 
     result.length.should.eql(1);
 
     result[0].path.should.eql('');
-    result[0].layout.should.eql(['index', 'archive']);
+    result[0].layout.should.eql(['blog', 'archive']);
     result[0].data.base.should.eql('');
     result[0].data.total.should.eql(1);
     result[0].data.current.should.eql(1);
@@ -84,7 +85,7 @@ describe('Index generator', function() {
     result[0].data.__index.should.be.true;
 
     // Restore config
-    hexo.config.index_generator.per_page = 10;
+    hexo.config.blog_generator.per_page = 10;
   });
 
   describe('order', function() {
@@ -95,7 +96,7 @@ describe('Index generator', function() {
     });
 
     it('custom order', function() {
-      hexo.config.index_generator.order_by = '-order';
+      hexo.config.blog_generator.order_by = '-order';
 
       var result = generator(locals);
 
@@ -103,7 +104,7 @@ describe('Index generator', function() {
       result[0].data.posts.eq(1).source.should.eql('baz');
       result[0].data.posts.eq(2).source.should.eql('foo');
 
-      hexo.config.index_generator.order_by = 'order';
+      hexo.config.blog_generator.order_by = 'order';
 
       result = generator(locals);
 
@@ -112,11 +113,11 @@ describe('Index generator', function() {
       result[0].data.posts.eq(2).source.should.eql('bar');
 
       // Restore config
-      delete hexo.config.index_generator.order_by;
+      delete hexo.config.blog_generator.order_by;
     });
 
     it('custom order - invalid order key', function() {
-      hexo.config.index_generator.order_by = '-something';
+      hexo.config.blog_generator.order_by = '-something';
 
       var result = generator(locals);
 
@@ -125,12 +126,12 @@ describe('Index generator', function() {
       result[0].data.posts.eq(2).source.should.eql('baz');
 
       // Restore config
-      delete hexo.config.index_generator.order_by;
+      delete hexo.config.blog_generator.order_by;
     });
   });
 
   it('custom pagination_dir', function() {
-    hexo.config.index_generator.per_page = 1;
+    hexo.config.blog_generator.per_page = 1;
     hexo.config.pagination_dir = 'yo';
 
     var result = generator(locals);
@@ -140,7 +141,7 @@ describe('Index generator', function() {
     result[2].path.should.eql('yo/3/');
 
     // Restore config
-    hexo.config.index_generator.per_page = 10;
+    hexo.config.blog_generator.per_page = 10;
     hexo.config.pagination_dir = 'page';
   });
 });
