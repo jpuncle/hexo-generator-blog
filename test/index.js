@@ -38,24 +38,24 @@ describe('Blog generator', function() {
     for (var i = 0, len = result.length; i < len; i++) {
       result[i].layout.should.eql(['blog', 'archive']);
       result[i].data.current.should.eql(i + 1);
-      result[i].data.base.should.eql('');
+      result[i].data.base.should.eql('blog/');
       result[i].data.total.should.eql(2);
     }
 
-    result[0].path.should.eql('');
-    result[0].data.current_url.should.eql('');
+    result[0].path.should.eql('blog/');
+    result[0].data.current_url.should.eql('blog/');
     result[0].data.posts.should.eql(posts.limit(2));
     result[0].data.prev.should.eql(0);
     result[0].data.prev_link.should.eql('');
     result[0].data.next.should.eql(2);
-    result[0].data.next_link.should.eql('page/2/');
+    result[0].data.next_link.should.eql('blog/page/2/');
     result[0].data.__index.should.be.true;
 
-    result[1].path.should.eql('page/2/');
-    result[1].data.current_url.should.eql('page/2/');
+    result[1].path.should.eql('blog/page/2/');
+    result[1].data.current_url.should.eql('blog/page/2/');
     result[1].data.posts.should.eql(posts.skip(2));
     result[1].data.prev.should.eql(1);
-    result[1].data.prev_link.should.eql('');
+    result[1].data.prev_link.should.eql('blog/');
     result[1].data.next.should.eql(0);
     result[1].data.next_link.should.eql('');
     result[1].data.__index.should.be.true;
@@ -71,12 +71,12 @@ describe('Blog generator', function() {
 
     result.length.should.eql(1);
 
-    result[0].path.should.eql('');
+    result[0].path.should.eql('blog/');
     result[0].layout.should.eql(['blog', 'archive']);
-    result[0].data.base.should.eql('');
+    result[0].data.base.should.eql('blog/');
     result[0].data.total.should.eql(1);
     result[0].data.current.should.eql(1);
-    result[0].data.current_url.should.eql('');
+    result[0].data.current_url.should.eql('blog/');
     result[0].data.posts.should.eql(posts);
     result[0].data.prev.should.eql(0);
     result[0].data.prev_link.should.eql('');
@@ -136,9 +136,9 @@ describe('Blog generator', function() {
 
     var result = generator(locals);
 
-    result[0].path.should.eql('');
-    result[1].path.should.eql('yo/2/');
-    result[2].path.should.eql('yo/3/');
+    result[0].path.should.eql('blog/');
+    result[1].path.should.eql('blog/yo/2/');
+    result[2].path.should.eql('blog/yo/3/');
 
     // Restore config
     hexo.config.blog_generator.per_page = 10;
