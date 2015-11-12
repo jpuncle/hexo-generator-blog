@@ -1,6 +1,6 @@
 # hexo-generator-blog
 
-[![Build Status](https://travis-ci.org/hexojs/hexo-generator-index.svg?branch=master)](https://travis-ci.org/hexojs/hexo-generator-index)  [![NPM version](https://badge.fury.io/js/hexo-generator-index.svg)](http://badge.fury.io/js/hexo-generator-index) [![Coverage Status](https://img.shields.io/coveralls/hexojs/hexo-generator-index.svg)](https://coveralls.io/r/hexojs/hexo-generator-index?branch=master)
+[![Build Status](https://travis-ci.org/jpuncle/hexo-generator-blog.svg?branch=master)](https://travis-ci.org/jpuncle/hexo-generator-blog)  [![NPM version](https://badge.fury.io/js/hexo-generator-blog.svg)](http://badge.fury.io/js/hexo-generator-blog) [![Coverage Status](https://img.shields.io/coveralls/jpuncle/hexo-generator-blog.svg)](https://coveralls.io/r/jpuncle/hexo-generator-blog?branch=master)
 
 Blog generator for [Hexo], it's like `hexo-generator-index`, however with custom path support.
 
